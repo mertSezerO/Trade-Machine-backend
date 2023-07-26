@@ -36,5 +36,19 @@ exports.getTeamPlayers = (req, res, next) => {
 }
 
 exports.getPlayer = (req, res, next) => {
-
+    const player = req.params.playerId
+    Player.findAll({
+        where: {
+            id: parseInt(player)
+        }
+    })
+    .then((player) => {
+        res.status(200)
+        .json({
+            player: player[0]
+        })
+    })
+    .catch((err) => {
+        console.log(err)
+    });
 }
