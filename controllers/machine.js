@@ -15,14 +15,23 @@ exports.getTeams = (req, res, next) => {
 }
 
 exports.getTeamPlayers = (req, res, next) => {
-    const team = req.params.team
+    const team = req.params.teamId
     if (!team){
         console.error('Team id not valid.')
     }
     Player.findAll({
         where: {
-            team_id : parseInt(team)
+            teamId : parseInt(team)
         }
+    })
+    .then(players => {
+        res.status(200)
+        .json({
+            players: players
+        })
+    })
+    .catch(err => {
+        console.log(err)
     })
 }
 
