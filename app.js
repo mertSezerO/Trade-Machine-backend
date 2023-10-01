@@ -11,7 +11,6 @@ app.use(
   })
 );
 
-//const db = require("./util/database");
 const mongoose = require("mongoose");
 
 const Team = require("./models/team");
@@ -24,22 +23,8 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(machineRouter);
 
-// Player.belongsTo(Team, { constraint: true, onDelete: "CASCADE" });
-// Team.hasMany(Player);
-
 mongoose.connect(process.env.DATABASE_URI).then(
   app.listen(process.env.PORT, () => {
     console.log("Listening on " + process.env.PORT);
   })
 );
-
-// db.sequelize
-//   .sync()
-//   .then((result) => {
-//     app.listen(process.env.PORT, () => {
-//       console.log("Listening on " + process.env.PORT);
-//     });
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
